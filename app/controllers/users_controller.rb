@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
 	def create
-		user = User.new(user_params)
+		user = User.new(user_params.merge(roles: ['customer']))
     if user.save
       token = JsonWebToken.encode(user_id: user.id)
       time = Time.now + 24.hours.to_i

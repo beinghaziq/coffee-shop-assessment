@@ -10,11 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_17_092939) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_17_102900) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "combo_items", force: :cascade do |t|
+    t.integer "quantity"
+    t.bigint "item_id"
+    t.bigint "combo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["combo_id"], name: "index_combo_items_on_combo_id"
+    t.index ["item_id"], name: "index_combo_items_on_item_id"
+  end
+
+  create_table "combos", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -43,6 +59,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_17_092939) do
     t.index ["category_id"], name: "index_items_on_category_id"
   end
 
+  create_table "order_items", force: :cascade do |t|
+    t.bigint "item_id"
+    t.bigint "combo_id"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["combo_id"], name: "index_order_items_on_combo_id"
+    t.index ["item_id"], name: "index_order_items_on_item_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.bigint "amount"
     t.integer "customer_id"
@@ -63,10 +89,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_17_092939) do
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
-    t.string "password", null: false
+    t.string "password"
     t.string "roles", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
   end
 
 end
