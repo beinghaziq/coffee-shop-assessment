@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_17_085818) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_17_092939) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,6 +18,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_17_085818) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "discounts", force: :cascade do |t|
+    t.string "discountable_type", null: false
+    t.bigint "discountable_id", null: false
+    t.bigint "amount"
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["discountable_type", "discountable_id"], name: "index_discounts_on_discountable"
   end
 
   create_table "items", force: :cascade do |t|
@@ -31,6 +41,23 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_17_085818) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_items_on_category_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "amount"
+    t.integer "customer_id"
+    t.string "status"
+    t.bigint "discounted_amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.bigint "amount"
+    t.integer "customer_id"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
