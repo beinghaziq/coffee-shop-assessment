@@ -1,6 +1,8 @@
 class Item < ApplicationRecord
 	belongs_to :category
 	has_one :discount, as: :discountable
+	has_many :order_items
+  has_many :orders, through: :order_items
 
 	def quantity(order_id)
 		order_items.where(order_id: order_id).sum(:quantity)

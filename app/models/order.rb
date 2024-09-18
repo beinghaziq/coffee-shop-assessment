@@ -5,22 +5,26 @@ class Order < ApplicationRecord
   has_many :combos, through: :order_combos
 	belongs_to :customer, class_name: 'User'
 	
-	before_create :calculate_amount
-	before_create :calculate_discount
+	after_create_commit :calculate_amount
+	after_create_commit :calculate_discount
+
+	accepts_nested_attributes_for :order_items, allow_destroy: true
 
 	# TODO: Move query to query object
 	def discounts
-		Discount.where('(discountable_type = ? AND discountable_id IN ?) OR (discountable_type = ?
-		AND discountable_id IN) OR (discountable_type = ? AND discountable_id IN)', 'Item', items.ids,
-		'Combo', combos.ids, 'Category', items.pluck(:category_id))
+		Discount.where('(discountable_type = ? AND discountable_id IN (?)) OR (discountable_type = ?
+                AND discountable_id IN (?)) OR (discountable_type = ? AND discountable_id IN (?))', 
+                'Item', items.ids, 
+                'Combo', combos.ids, 
+                'Category', items.pluck(:category_id).compact)
+
 	end
 
 	private
 
 	def calculate_amount
 		amount = items.reduce(0) { |sum, item| sum + (item.amount * item.quantity(id)) }
-		order.amount = amount
-		order.discounted_amount = amount
+		self.update(amount: amount, discounted_amount: amount)
 	end
 
 	def calculate_discount
