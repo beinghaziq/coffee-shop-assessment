@@ -2,6 +2,12 @@
 
 A Ruby on Rails API project designed to manage coffee shop operations, including the inventory of items (such as beverages, snacks, and other products), handling customer orders, processing sales transactions, and applying various discounts. The system supports different types of discounts, such as item-based or category-based discounts, which can be applied based on quantity, purchase combinations, or user-specific offers. Additionally, the API tracks order history, manages user accounts, and includes a royalty program to reward customers based on their purchase behavior. The application is built to be scalable, with endpoints accessible via Postman, and is optimized for easy integration with frontend systems. Docker and Docker Compose are supported for seamless deployment.
 
+<img width="1104" alt="Screenshot 2024-09-18 at 11 31 11 PM" src="https://github.com/user-attachments/assets/54cb90a2-2260-4b1b-8f91-172b9d764d1f">
+<img width="1002" alt="Screenshot 2024-09-18 at 11 31 38 PM" src="https://github.com/user-attachments/assets/6dc6480b-b322-41f4-8c12-6de844aadaa2">
+<img width="1076" alt="Screenshot 2024-09-18 at 11 31 59 PM" src="https://github.com/user-attachments/assets/52a132c8-4224-4c0f-9795-ac9136ab3b22">
+<img width="829" alt="Screenshot 2024-09-18 at 11 32 24 PM" src="https://github.com/user-attachments/assets/d80510bf-9548-4feb-917b-ef84923c2b23">
+
+
 ## Schema
 
 - Item: Any beverage, snack etc
