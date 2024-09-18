@@ -40,7 +40,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_18_104105) do
     t.string "discountable_type", null: false
     t.bigint "discountable_id", null: false
     t.bigint "amount"
-    t.string "type"
+    t.string "discount_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["discountable_type", "discountable_id"], name: "index_discounts_on_discountable"

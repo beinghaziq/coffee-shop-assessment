@@ -12,6 +12,6 @@ class DiscountsController < ApplicationController
 	private
 
 	def discount_params
-    params.permit(:discountable_type, :discountable_id, :amount, :type)
+    params.permit(:discountable_type, :discountable_id, :amount, :discount_type)
   end
 end
