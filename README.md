@@ -1,67 +1,50 @@
-# Sample Readme Project
+# Coffee Shop
 
-This project is a simple web application built with Ruby on Rails and Dockerized for development ease. It uses PostgreSQL as its database.
+A Ruby on Rails API project designed to manage coffee shop operations, including the inventory of items (such as beverages, snacks, and other products), handling customer orders, processing sales transactions, and applying various discounts. The system supports different types of discounts, such as item-based or category-based discounts, which can be applied based on quantity, purchase combinations, or user-specific offers. Additionally, the API tracks order history, manages user accounts, and includes a royalty program to reward customers based on their purchase behavior. The application is built to be scalable, with endpoints accessible via Postman, and is optimized for easy integration with frontend systems. Docker and Docker Compose are supported for seamless deployment.
 
-In this app I am getting the products data from the dummyjson api and using that I have implemented a functionality for users to share their thoughts about a specific product by adding a comment to it. I am saving the users and comments data in our database, so that it can be displayed later to other users on the product show page. A user can also edit or delete his/her comments.
+## Schema
 
-## Features (Can add schema or relationships as well)
-
-- Product: Represents a product fetched from the dummyjson API (Not storing it in our DB).
-- Comment: Represents user comments. Each comment belongs to a product.
-- List Products: View a list of products fetched from the dummyjson API.
-- View Product: Click on a product title to go to show page.
-- Add Comment to Product: Users can add comments to a specific product.
-
-`(Ideally, a demo video should be put here.)`
-
-<img width="1409" alt="Screenshot 2023-11-09 at 7 17 12 PM" src="https://github.com/beinghaziq/awesome-readme/assets/72576839/c884958c-f0dd-4ae1-bdcc-39a888cddcb8">
-
+- Item: Any beverage, snack etc
+- Discount: Represents discounts on products, discounts can be item based, category based or combo based.
+- Category: Category of items.
+- Orders: Orders placed by customers.
+- Combo: Collection of multiple items upon which discount is applied.
 
 # Build With
 
-- Framework: Ruby on Rails 7.0
+- Framework: Ruby on Rails 7.1
 - Database: PostgreSQL
-- API: dummyjson products API (https://dummyjson.com/docs/products)
 
 # Getting Started
 
 ## Prerequisites
 
-- npm
+- ruby
+- postgres
 
-  ```bash
-  npm install npm@latest -g
-  ```
 
 ## Installation
 
 1. **Clone the Repository**:
    ```bash
-   git clone [<repository-url>](https://github.com/Owner/repo.git)
-   cd repo
-   create a .env file and copy content from .env.example to it
+   git clone [<repository-url>](https://github.com/beinghaziq/coffee-shop-assessment.git)
+   cd coffee-shop-assessment
+
    ```
-2. **Build the Docker Images**:
-   ```bash
-   docker-compose build
-   ```
-3. **Initialize the Database**:
+   
+2. **Initialize the Database**:
    - Before starting the application for the first time, ensure that the database is set up correctly.
    ```bash
-   docker-compose up -d db
-   docker-compose run web rails db:create db:migrate
+   rails db:create
+   rails db:migrate
    ```
    - Now run the application with
    ```bash
-   docker-compose up
+   rails server
    ```
 
 ## API Documentation
 
-add postman or Swagger link here
+[APIs](https://api.postman.com/collections/36868040-ad57fc67-ea33-4188-8f53-d7965c4acb20?access_key=PMAT-01J835Y523KNAJ9NMKRHDZZH4B)
 
-## Run Tests
 
-```bash
-    rpsec
-```
