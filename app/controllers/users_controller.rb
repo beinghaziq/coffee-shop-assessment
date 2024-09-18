@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::API
+class UsersController < ApplicationController
 	def create
 		user = User.new(user_params.merge(roles: ['customer']))
     if user.save
