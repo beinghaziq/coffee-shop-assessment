@@ -48,3 +48,15 @@ A Ruby on Rails API project designed to manage coffee shop operations, including
 [APIs](https://api.postman.com/collections/36868040-ad57fc67-ea33-4188-8f53-d7965c4acb20?access_key=PMAT-01J835Y523KNAJ9NMKRHDZZH4B)
 
 
+## Features that are missing or nice to have
+- Rubocop can be added
+- I have added user creation and JWT generation but it needs to be properly handled with HTTP only cookies and sessions.
+- version is added in items table but it needs to be properly configure to use with rails optimistic locking.
+- AASM gem is added but proper state management is not configured.
+- Rspec and Docker
+- Pundit gem for role based authorization.
+- Api key handling to secure private API
+- Rack Attack to secure from DDOS attacks.
+
+
+
